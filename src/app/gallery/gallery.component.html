@@ -1,0 +1,23 @@
+<div class="Gallery-container">
+    <div class="Gallery">
+        <div class="Gallery-img" *ngFor="let Data of GalleryData;let i = index">
+            <img (click)="PreviewImage(i)" [src]="Data.ImageSrc" [alt]="Data.ImageAlt">
+        </div>
+    </div>
+    <div *ngIf="showmask" class="buttons" @animation2>
+        <span *ngIf="showCount" class="count">{{currentIndex+1}}</span>
+        <button *ngIf="previewImage" (click)="closePreview()" class="close-btn">
+            <i class="far fa-times"></i>
+        </button>
+        <button *ngIf="controls" class="btn-indicate btn-prev" (click)="prevImage()">
+            <i class="fas fa-arrow-circle-left icon-buttons icon-left"></i>
+        </button>
+        <button *ngIf="controls" class="btn-indicate btn-next" (click)="nextImage()">
+            <i class="fas fa-arrow-circle-right icon-buttons icon-right"></i>
+        </button>
+        <div *ngIf="previewImage" [@animation]="{value: 'visible'}" (@animation.done)="AnimationEnd($event)"
+            class="Image">
+            <img [src]="currentLightboximg.ImageSrc" [alt]="currentLightboximg.ImageAlt">
+        </div>
+    </div>
+</div>
